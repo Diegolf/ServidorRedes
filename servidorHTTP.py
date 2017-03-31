@@ -169,6 +169,6 @@ class ServidorHTTP:
 	# iniciarServidor()
 # class ServidorHTTP
 
-from servidorHTTP import ServidorHTTP
-se = ServidorHTTP()
-se.iniciarServidor()
+#from servidorHTTP import ServidorHTTP
+#se = ServidorHTTP()
+#se.iniciarServidor()
