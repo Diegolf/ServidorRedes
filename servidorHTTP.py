@@ -5,6 +5,8 @@ import socket
 import re
 import os
 import threading
+from sys import argv
+import webbrowser
 
 class ServidorHTTP:
 
@@ -164,11 +166,24 @@ class ServidorHTTP:
 			t1.start()
 
 		# Termina a conexão com o cliente
-		con.close()
-		
+		con.close()		
 	# iniciarServidor()
+
 # class ServidorHTTP
 
-#from servidorHTTP import ServidorHTTP
-#se = ServidorHTTP()
-#se.iniciarServidor()
+def executarServidor(ip,porta):
+	servidor = ServidorHTTP(ip,int(porta))
+	servidor.iniciarServidor()
+
+# Executado somente se o usuário passar argumentos por parâmetro
+if __name__ == '__main__':
+	if len(argv) == 3:
+
+		# O primeiro argumento deve ser o ip
+		if re.match(r'^[0-9]{1,3}(\.[0-9]{1,3}){3}$',argv[1]):
+
+			# O Segundo argumento deve ser a porta
+			if re.match(r'^[0-9]{1,4}$',argv[2]):
+				t2 = threading.Thread(target=executarServidor, args=[argv[1],argv[2]])
+				t2.start()
+				webbrowser.open("http://{0}:{1}".format(argv[1],argv[2]))
